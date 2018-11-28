@@ -1,4 +1,5 @@
 import folium
+import os
 
 # Create a map object
 m = folium.Map(location=[30.307182, -97.755996], zoom_start=12)
@@ -20,7 +21,7 @@ folium.Marker(l1,
                 tooltip=tooltip).add_to(m)
 
 folium.Marker(l2, 
-                popup='<strong>Location Two</strong>',
+                popup='<strong>UT Students Dreaming</strong>',
                 tooltip=tooltip,
                 icon=folium.Icon(icon='cloud')).add_to(m)
 
@@ -47,6 +48,12 @@ folium.Rectangle(
     weight= 1,
     fill=True,
     fill_color='#ff7800'
+    ).add_to(m)
+
+# Geojson overlay
+overlay = os.path.join('data', 'overlay.json')
+folium.GeoJson(overlay, 
+    name='UT Austin',
     ).add_to(m)
 
 # Generate map
